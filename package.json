@@ -1,0 +1,20 @@
+{
+  "name": "web-file-cache",
+  "version": "1.0.0",
+  "description": "A simple web cache persisted in the file system",
+  "main": "Cache.js",
+  "scripts": {
+    "test": "mocha ./test"
+  },
+  "keywords": [
+    "web",
+    "cache",
+    "filesystem"
+  ],
+  "author": "tzbee",
+  "license": "MIT",
+  "dependencies": {
+    "mkdirp": "^0.5.0",
+    "sha-1": "^0.1.1"
+  }
+}
