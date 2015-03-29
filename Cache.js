@@ -41,3 +41,7 @@ Cache.prototype.get = function(url, cb) {
 
 
 module.exports = Cache;
+
+		fs.rmdir('test/cache', function() {
+			console.log('done!');
+		});
