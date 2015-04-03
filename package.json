@@ -17,7 +17,12 @@
     "mkdirp": "^0.5.0",
     "sha-1": "^0.1.1"
   },
-  "devDependencies":{
+  "devDependencies": {
     "rimraf": "*"
+  },
+  "jshintConfig": {
+    "node": "true",
+    "strict": "false",
+    "mocha":"true"
   }
 }

@@ -3,6 +3,7 @@ var mkdirp = require('mkdirp');
 var sha1 = require('sha-1');
 var path = require('path');
 
+module.exports = Cache;
 
 function Cache(dir) {
 	this.dir = dir;
@@ -12,9 +13,13 @@ function removeTrailingSlash(url) {
 	return url ? url.replace(/\/+$/, '') : '';
 }
 
+function formatInput(input) {
+	return removeTrailingSlash(input.toString());
+}
+
 function formatAndHashURL(url) {
 	// Remove trailing and hash the url
-	return sha1(removeTrailingSlash(url));
+	return sha1(formatInput(url));
 }
 
 Cache.prototype.add = function(url, content, cb) {
@@ -38,10 +43,3 @@ Cache.prototype.get = function(url, cb) {
 		cb(err, result);
 	});
 };
-
-
-module.exports = Cache;
-
-		fs.rmdir('test/cache', function() {
-			console.log('done!');
-		});
