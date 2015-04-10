@@ -1,4 +1,4 @@
-Desription
+Description
 ==========
 
 A simple web cache persisted in the file system.
