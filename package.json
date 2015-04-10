@@ -1,5 +1,5 @@
 {
-  "name": "web-file-cache",
+  "name": "web-cache",
   "version": "1.0.0",
   "description": "A simple web cache persisted in the file system",
   "main": "Cache.js",
