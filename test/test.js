@@ -45,8 +45,9 @@ describe('Cache', function() {
 		});
 
 		it('should get an element present in the cache', function(done) {
-			cache.add('key', 'value', function() {
-				cache.get('key', function(err, value) {
+
+			cache.add('http://foo.com/bar', 'value', function() {
+				cache.get('http://foo.com/bar', function(err, value) {
 					assert.equal(err, null);
 					assert.strictEqual(value, 'value');
 					done();
@@ -113,11 +114,18 @@ describe('Cache', function() {
 			});
 		});
 
-		it('should add a file to the cache', function(done) {
+		it('should return an error if the key is not a valid url', function(done) {
 			cache.add('key', 'value', function(err) {
+				assert.notEqual(err, null);
+				done();
+			});
+		});
+
+		it('should add a file to the cache if the key is a valid url', function(done) {
+			cache.add('http://foo.com/bar', 'value', function(err) {
 				assert.equal(err, null);
 
-				cache.get('key', function(err, value) {
+				cache.get('http://foo.com/bar', function(err, value) {
 					assert.equal(err, null);
 					assert.equal(value, 'value');
 					done();

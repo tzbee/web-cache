@@ -2,6 +2,7 @@ var fs = require('fs');
 var mkdirp = require('mkdirp');
 var sha1 = require('sha-1');
 var path = require('path');
+var validUrl = require('valid-url');
 
 module.exports = Cache;
 
@@ -22,6 +23,10 @@ function formatAndHashURL(url) {
 	return sha1(formatInput(url));
 }
 
+function isValidURL(str) {
+	return validUrl.is_web_uri(str);
+}
+
 Cache.prototype.add = function(url, content, cb) {
 	if (!url || !content) {
 		cb(new Error('No key or value to add'));
@@ -30,6 +35,11 @@ Cache.prototype.add = function(url, content, cb) {
 
 	if (typeof url != 'string')  {
 		cb(new Error('Url ' + url + ' is not a string'));
+		return;
+	}
+
+	if(!isValidURL(url)) {
+		cb(new Error('Url ' + url + ' is not a valid url'));
 		return;
 	}
 
