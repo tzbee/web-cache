@@ -14,7 +14,7 @@ function removeTrailingSlash(url) {
 }
 
 function formatInput(input) {
-	return removeTrailingSlash(input.toString());
+	return removeTrailingSlash(input);
 }
 
 function formatAndHashURL(url) {
@@ -25,6 +25,11 @@ function formatAndHashURL(url) {
 Cache.prototype.add = function(url, content, cb) {
 	if (!url || !content) {
 		cb(new Error('No key or value to add'));
+		return;
+	}
+
+	if (typeof url != 'string')  {
+		cb(new Error('Url ' + url + ' is not a string'));
 		return;
 	}
 

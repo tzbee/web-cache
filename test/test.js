@@ -54,16 +54,6 @@ describe('Cache', function() {
 			});
 		});
 
-		it('should convert key to string if it is a number', function(done) {
-			cache.add('2', 'value', function() {
-				cache.get(2, function(err, value) {
-					assert.equal(err, null);
-					assert.strictEqual(value, 'value');
-					done();
-				});
-			});
-		});
-
 		it('should return an error if a key is not in the cache', function(done) {
 			cache.get('notAKey', function(err) {
 				assert.notEqual(err, null);
@@ -116,23 +106,18 @@ describe('Cache', function() {
 			});
 		});
 
+		it('should return an error key is not a string', function(done) {
+			cache.add(2, 'value', function(err) {
+				assert.notEqual(err, null);
+				done();
+			});
+		});
+
 		it('should add a file to the cache', function(done) {
 			cache.add('key', 'value', function(err) {
 				assert.equal(err, null);
 
 				cache.get('key', function(err, value) {
-					assert.equal(err, null);
-					assert.equal(value, 'value');
-					done();
-				});
-			});
-		});
-
-		it('should convert key to string if it is a number', function(done) {
-			cache.add(2, 'value', function(err) {
-				assert.equal(err, null);
-
-				cache.get('2', function(err, value) {
 					assert.equal(err, null);
 					assert.equal(value, 'value');
 					done();
